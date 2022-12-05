@@ -2,6 +2,7 @@
 
 The main goal of the code is to be able to extract from columns of an excel spreadsheet in order to replace text from pre-prepared standardised documents. This eliminates repetitive and meaningless work that bogs down many organisations throughout the globe.
 
+The latest version has been re-worked to reduce the lines of code. All functionalites for same font/size/shape/colouring/highlighting remain intact.
 
 ## How to Use:
 
