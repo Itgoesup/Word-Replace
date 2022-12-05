@@ -1,0 +1,35 @@
+# Import the required modules
+import os
+from openpyxl import load_workbook
+import win32com.client
+
+# Set the path to the Word document
+input_document="ITT Test.docx"
+y=os.getcwd()+f"\\{input_document}"
+path = y
+
+# EDIT THE PARAMETERS BELOW!
+Workbook_name="Book.xlsx"
+Work_sheetname="Input Sheet"
+Text_Replacement_Column="C"
+Text_Target_Column="D"
+#New_WordName
+
+wb = load_workbook(os.getcwd()+f"\\{Workbook_name}")  # Work Book
+ws = wb[Work_sheetname]  # Work Sheet Name
+column = ws[Text_Replacement_Column]  # Column to Extract Data From
+a = [column[x].value for x in range(len(column))]
+re_column=ws[Text_Target_Column]
+r=[re_column[x].value for x in range(len(re_column))]
+
+# Open the Word document
+word = win32com.client.DispatchEx("Word.Application")
+document = word.Documents.Open(path)
+
+# Replace the old string with the new string
+for i in range(len(r)):
+    word.Selection.Find.Execute(r[i], False, False, False, False, False, True, 1, True, a[i], 2)
+
+# Save and close the Word document
+document.SaveAs(os.getcwd()+"\\New.docx")
+document.Close()
